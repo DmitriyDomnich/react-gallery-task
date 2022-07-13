@@ -3,6 +3,8 @@ import Search from '../components/Search';
 import Gallery from 'src/components/Gallery';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { getPhotosByTermAction } from 'src/actions/getPhotosByTermAction';
+import Scroller from 'src/components/Scroller';
+import Loader from 'src/components/Loader/Loader';
 
 function GalleryPage() {
   const { gallery, error, isLoading, lastTerm } = useAppSelector(
@@ -30,7 +32,7 @@ function GalleryPage() {
           {error}
         </div>
       )}
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Loader />}
       {photos?.length && photos.length ? (
         <Gallery onLoadMoreRequest={loadMore} photos={photos} />
       ) : (
@@ -41,6 +43,7 @@ function GalleryPage() {
           </div>
         )
       )}
+      <Scroller />
     </div>
   );
 }
