@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPhoto } from 'src/data/models/photo-model';
-import { getPhotosByTerm } from '../../services/UnsplashService';
+import { getPhotosByTermAction } from '../actions/getPhotosByTermAction';
 
 export type IGallery = { photos: IPhoto[]; length: number };
 
@@ -23,10 +23,10 @@ export const gallerySlice = createSlice({
   name: 'gallery',
   reducers: {},
   extraReducers: {
-    [getPhotosByTerm.pending.type]: (state, action: PayloadAction<string>) => {
+    [getPhotosByTermAction.pending.type]: (state, _) => {
       state.isLoading = true;
     },
-    [getPhotosByTerm.fulfilled.type]: (
+    [getPhotosByTermAction.fulfilled.type]: (
       state,
       { payload }: PayloadAction<{ data: IPhoto[]; termName: string }>
     ) => {
@@ -46,7 +46,10 @@ export const gallerySlice = createSlice({
             photos: payload.data,
           };
     },
-    [getPhotosByTerm.rejected.type]: (state, action: PayloadAction<string>) => {
+    [getPhotosByTermAction.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
       state.isLoading = false;
       state.error = action.payload;
     },

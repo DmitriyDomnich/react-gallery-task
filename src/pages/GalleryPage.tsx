@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../components/Search';
 import Gallery from 'src/components/Gallery';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks/hooks';
-import { getPhotosByTerm } from 'src/services/UnsplashService';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { getPhotosByTermAction } from 'src/actions/getPhotosByTermAction';
 
 function GalleryPage() {
   const { gallery, error, isLoading, lastTerm } = useAppSelector(
@@ -15,12 +15,12 @@ function GalleryPage() {
 
   useEffect(() => {
     if (term && term !== lastTerm && !photos?.length) {
-      dispatch(getPhotosByTerm({ page: gallery[term]?.length, term }));
+      dispatch(getPhotosByTermAction({ page: gallery[term]?.length, term }));
     }
   }, [term]);
 
   const loadMore = () =>
-    dispatch(getPhotosByTerm({ term, page: gallery[term].length }));
+    dispatch(getPhotosByTermAction({ term, page: gallery[term].length }));
 
   return (
     <div className='pt-32 flex flex-col items-center'>

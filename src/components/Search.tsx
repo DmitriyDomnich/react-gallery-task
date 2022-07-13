@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import Button from 'src/widgets/Button';
+import Button from 'src/components/Button';
 
 type Props = {
   onTermSubmit: (term: string) => void;
