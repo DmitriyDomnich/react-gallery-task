@@ -2,7 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPhoto } from 'src/data/models/photo-model';
 import { getPhotosByTermAction } from '../actions/getPhotosByTermAction';
 
-export type IGallery = { photos: IPhoto[]; length: number };
+export interface IGallery {
+  photos: IPhoto[];
+  length: number;
+}
 
 type Gallery = {
   gallery: Record<string, IGallery>;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { IPhoto } from 'src/data/models/photo-model';
-import Button from 'src/components/Button';
+import Button from './Button';
 import Photo from './Photo';
 
 type Props = {
